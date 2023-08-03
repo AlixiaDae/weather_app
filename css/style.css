@@ -45,15 +45,16 @@ main {
   padding: 3rem;
   box-shadow: 4px 0px 10px lightgray inset;
 }
-main div {
+main .location-box {
   padding: 1rem;
   text-align: center;
   font-family: "Roboto", sans-serif;
+  height: 70px;
 }
 main .temp-weather-box {
   display: grid;
   grid-template-rows: 420px 90px;
-  width: 35%;
+  width: 500px;
   margin: 0 auto;
   box-shadow: 3px 3px 10px rgb(145, 159, 173);
   border-radius: 15px;
@@ -65,7 +66,7 @@ main .temp-weather-box .temperature {
   font-family: "Roboto", sans-serif;
   font-size: 2.5rem;
 }
-main .temp-weather-box img {
+main .temp-weather-box .weather-picture {
   padding: 1rem;
   height: 100%;
   width: 100%;

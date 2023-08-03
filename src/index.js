@@ -7,10 +7,11 @@ const imageElement = document.querySelector(".weather-picture")
 let locationCode;
 const weatherFolder = "../assets/weather/64x64/day/"
 const iconsFolder = "../assets/icons/"
-
+let location = "" || "Milan"
+document.querySelector(".location-box h2").textContent = location
 
 async function getTemperature() {
-    const response = await fetch('http://api.weatherapi.com/v1/current.json?key=3e703f9b6f2b40a1ad4122531230308&q=batangas', {mode:'cors'})
+    const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=3e703f9b6f2b40a1ad4122531230308&q=${location.toLowerCase()}` , {mode:'cors'})
     const data = await response.json()
     let text = data.current.condition.text
     let temp = data.current.temp_c
