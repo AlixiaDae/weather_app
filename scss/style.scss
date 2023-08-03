@@ -6,11 +6,15 @@ body {
     height: 100vh;
     width: 100%;
     font-family: $headerFont;
+    background-image: url('../assets/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 header {
     padding: 1.5rem;
-    box-shadow: 0px 4px 10px lightgray;
+    color: whitesmoke;
 
     h1 {
         margin-left: 170px;
@@ -23,40 +27,58 @@ header {
 main {
     flex-grow: 1;
     padding: 3rem;
-    box-shadow: 4px 0px 10px lightgray inset;
+    color: whitesmoke;
+    
 
-    .location-box {
-        padding: 1rem;
+    .component-card {
+        // background-image: linear-gradient(180deg, $purple, $mediumpurple);
+        height: 500px;
+        width: 400px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        gap: 20px;
+        font-size: 1.5rem;
         text-align: center;
-        font-family: $pFont;
-        height: 70px;
-    }
-
-    .temp-weather-box {
-        display: grid;
-        grid-template-rows: 420px 90px;
-        width: 500px;
         margin: 0 auto;
-        box-shadow: 3px 3px 10px rgb(145, 159, 173);
-        border-radius: 15px;
+        background-color: $circlegray;
 
         .temperature {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: $pFont;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
+            font-weight: map-get($font-weights, bold);
         }
+
+        .weather {
+            border-radius: 100%;
+            
+            // background-image: linear-gradient(180deg, $mediumpurple, $purple);
+
             .weather-picture {
-                padding: 1rem;
-                height: 100%;
-                width: 100%;
+                height: 200px;
             }
         }
-        
+
+        p {
+            margin: 0;
+            color: whitesmoke;
+        }
+    }
 }
 
 footer {
     padding: 1rem;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    background-color: $black;
+    color: whitesmoke;
+
+    .copy {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        
+    }
 }

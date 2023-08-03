@@ -4,20 +4,23 @@ import json from './weather_conditions.json'
 
 const temperatureElement = document.querySelector(".temperature")
 const imageElement = document.querySelector(".weather-picture")
+const message = document.querySelector(".message")
 let locationCode;
 const weatherFolder = "../assets/weather/64x64/day/"
 const iconsFolder = "../assets/icons/"
 let location = "" || "Milan"
-document.querySelector(".location-box h2").textContent = location
+document.querySelector(".component-card h2").textContent = location
 
 async function getTemperature() {
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=3e703f9b6f2b40a1ad4122531230308&q=${location.toLowerCase()}` , {mode:'cors'})
     const data = await response.json()
+    let locationName = data.location.name
     let text = data.current.condition.text
     let temp = data.current.temp_c
     getPicture(text)
     // console.log(iconCode)
     temperatureElement.textContent = `${temp}\xB0C`
+    message.textContent = `${locationName} is currently ${text}.`
 }
 
 getTemperature()
