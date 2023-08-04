@@ -10,13 +10,33 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/api.js":
+/*!********************!*\
+  !*** ./src/api.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   getForecast: () => (/* binding */ getForecast),\n/* harmony export */   getWeather: () => (/* binding */ getWeather),\n/* harmony export */   getWeatherData: () => (/* binding */ getWeatherData)\n/* harmony export */ });\nasync function getWeather(url) {\n    const response = await fetch(url, {mode:'cors'})\n    const data = await response.json()\n    \n    return data\n}\n\n/*function getWeatherData(data) {\n    const myData = {\n        name: data.location.name,\n        temperature_c: data.current.temp_c,\n        temperature_f: data.current.temp_f,\n        condition: data.current.condition.text,\n    }\n    return myData\n}*/\n\nasync function getForecast(location) {\n    let url = `http://api.weatherapi.com/v1/forecast.json?key=3e703f9b6f2b40a1ad4122531230308&q=${location.toLowerCase()}`\n    const response = await fetch(url, {mode:'cors'})\n    const data = await response.json()\n    console.log(getForecastData(data))\n    return data\n}\n/*\nfunction getForecastData(data) {\n    const forecast = data.forecast.forecastday\n    const myForecast = {\n        condition: forecast.map(cast => cast.day.condition.text),\n        minTemp_c: forecast.map(cast => cast.day.mintemp_c),\n        minTemp_f: forecast.map(cast => cast.day.mintemp_f),\n        maxTemp_c: forecast.map(cast => cast.day.maxtemp_c),\n        maxTemp_f: forecast.map(cast => cast.day.maxtemp_f)\n    }\n\n    return myForecast\n}\n*/\n\nfunction getWeatherData(data, time) {\n    if(time === \"current\") {\n        const myData = {\n            name: data.location.name,\n            temperature_c: data.current.temp_c,\n            temperature_f: data.current.temp_f,\n            condition: data.current.condition.text,\n        }\n        return myData\n    } else {\n        const forecast = data.forecast.forecastday\n        const myForecast = {\n            condition: forecast.map(cast => cast.day.condition.text),\n            minTemp_c: forecast.map(cast => cast.day.mintemp_c),\n            minTemp_f: forecast.map(cast => cast.day.mintemp_f),\n            maxTemp_c: forecast.map(cast => cast.day.maxtemp_c),\n            maxTemp_f: forecast.map(cast => cast.day.maxtemp_f)\n        }\n    return myForecast\n    }\n}\n\n\n\n//# sourceURL=webpack://weather_app/./src/api.js?");
+
+/***/ }),
+
+/***/ "./src/dom.js":
+/*!********************!*\
+  !*** ./src/dom.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ \"./src/api.js\");\n\n\n\n\nconst dom = (() => {\n    const body = document.body\n    const locationElement = document.querySelector(\"h2\")\n    const imageElement = document.querySelector(\".weather-picture\")\n    const temperatureElement = document.querySelector(\".temperature\")\n    const messageElement = document.querySelector(\".message\")\n\n    let location = \"Milan\"\n\n    let url = `http://api.weatherapi.com/v1/forecast.json?key=3e703f9b6f2b40a1ad4122531230308&q=${location.toLowerCase()}`\n    \n    const iconsFolder = \"../assets/icons/\"\n\n    function getPicture(textCondition) {\n        if(textCondition === \"Sunny\" || textCondition === \"Clear\") {\n            imageElement.src = `${iconsFolder}sunny.svg`\n        } else if (textCondition === \"Partly cloudy\" || textCondition === \"Cloudy\") {\n            imageElement.src = `${iconsFolder}cloudy.svg`\n        } else if (textCondition === \"Patchy rain possible\" || textCondition === \"Light drizzle\" || textCondition === \"Patch light rain\"|| textCondition === \"Light rain\" || textCondition === \"Moderate rain at times\" || textCondition === \"Moderate rain\" || textCondition === \"Light rain shower\") {\n            imageElement.src = `${iconsFolder}rainy.svg`\n        } \n    }\n    \n    async function render(time) {\n        let data = await _api__WEBPACK_IMPORTED_MODULE_0__.getWeather(url)\n        let processedData = _api__WEBPACK_IMPORTED_MODULE_0__.getWeatherData(data, time)\n\n        locationElement.textContent = processedData.name\n        messageElement.textContent = processedData.condition\n        temperatureElement.textContent = `${processedData.temperature_c}°C`\n        getPicture(processedData.condition)\n    }\n\n    render(\"current\")\n\n    return body\n})()\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dom);\n\n//# sourceURL=webpack://weather_app/./src/dom.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _weather_conditions_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./weather_conditions.json */ \"./src/weather_conditions.json\");\n\n\n// console.log(json.find(code => code.code === 1000))\n\nconst temperatureElement = document.querySelector(\".temperature\")\nconst imageElement = document.querySelector(\".weather-picture\")\nconst message = document.querySelector(\".message\")\nlet locationCode;\nconst weatherFolder = \"../assets/weather/64x64/day/\"\nconst iconsFolder = \"../assets/icons/\"\nlet location =  false || \"Milan\"\ndocument.querySelector(\".component-card h2\").textContent = location\n\nasync function getTemperature() {\n    const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=3e703f9b6f2b40a1ad4122531230308&q=${location.toLowerCase()}` , {mode:'cors'})\n    const data = await response.json()\n    let locationName = data.location.name\n    let text = data.current.condition.text\n    let temp = data.current.temp_c\n    getPicture(text)\n    // console.log(iconCode)\n    temperatureElement.textContent = `${temp}\\xB0C`\n    message.textContent = `${locationName} is currently ${text}.`\n}\n\ngetTemperature()\n\nfunction getPicture(textCondition) {\n    if(textCondition === \"Sunny\") {\n        imageElement.src = `${iconsFolder}sunny.svg`\n    } else if (textCondition === \"Partly cloudy\" || textCondition === \"Cloudy\") {\n        imageElement.src = `${iconsFolder}cloudy.svg`\n    } else if (textCondition === \"Patchy rain possible\" || textCondition === \"Light drizzle\" || textCondition === \"Patch light rain\"|| textCondition === \"Light rain\" || textCondition === \"Moderate rain at times\" || textCondition === \"Moderate rain\" || textCondition === \"Light rain shower\") {\n        imageElement.src = `${iconsFolder}rainy.svg`\n    }\n   \n}\n\n\n\n//# sourceURL=webpack://weather_app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ \"./src/api.js\");\n/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dom */ \"./src/dom.js\");\n/* harmony import */ var _weather_conditions_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weather_conditions.json */ \"./src/weather_conditions.json\");\n\n\n\n\n// DOM\n\nconst temperatureElement = document.querySelector(\".temperature\")\nconst imageElement = document.querySelector(\".weather-picture\")\nconst message = document.querySelector(\".message\")\nlet locationCode;\nconst weatherFolder = \"../assets/weather/64x64/day/\"\nconst iconsFolder = \"../assets/icons/\"\nlet location =  false || \"Milan\"\n\n_dom__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n\n\n\n\n//# sourceURL=webpack://weather_app/./src/index.js?");
 
 /***/ }),
 
@@ -57,6 +77,23 @@ eval("module.exports = JSON.parse('[{\"code\":1000,\"day\":\"Sunny\",\"night\":\
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
