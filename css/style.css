@@ -1,0 +1,215 @@
+@charset "UTF-8";
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img { /* safari 6.0 - 9.0 */
+  filter: invert(100%);
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  font-family: "Roboto Mono", sans-serif;
+  background-image: url("../assets/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: none;
+  justify-content: center;
+}
+
+header {
+  width: 100%;
+  padding-top: 1.5rem;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+header h1 {
+  font-family: "Roboto Mono", sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  margin-left: 200px;
+}
+header span {
+  gap: 50px;
+  margin-right: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+header .searchbox input {
+  padding: 10px;
+  background-color: transparent;
+  color: whitesmoke;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid white;
+  font-weight: 700;
+}
+header .searchbox input:focus {
+  background-color: hsla(0, 0%, 0%, 0.3);
+  color: whitesmoke;
+}
+header .toggle-box input {
+  display: none;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+header .toggle-box input:checked + label:after {
+  content: "°F";
+  left: 43px;
+  transform: translateX(-5%);
+  transition: all 0.3s ease;
+  background-image: linear-gradient(hsla(280, 86%, 3%, 0.3), hsla(0, 0%, 0%, 0.541));
+}
+header label {
+  width: 80px;
+  height: 40px;
+  position: relative;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.26);
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0px 5px 5px inset rgba(0, 0, 0, 0.5);
+  font-size: 24px;
+}
+header label:after {
+  content: "°C";
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  border-radius: 180px;
+  background-image: linear-gradient(hsla(0, 0%, 0%, 0.541), hsla(280, 86%, 3%, 0.3));
+  transition: all 0.3s ease;
+}
+
+main {
+  flex-grow: 1;
+  padding: 2rem;
+  color: whitesmoke;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+main .component-card {
+  height: 500px;
+  width: 400px;
+  border-radius: 20px;
+  gap: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+main .component-card .temperature {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+main .component-card .weather {
+  border-radius: 100%;
+}
+main .component-card .weather .weather-picture {
+  height: 150px;
+}
+main .component-card .weather .spin {
+  animation: rotate 10s linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+main .component-card p {
+  margin: 0;
+  color: whitesmoke;
+}
+main .forecast-bar {
+  width: 30%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+main .forecast-bar .forecast-card {
+  gap: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+main .forecast-bar .forecast-card .date {
+  font-size: 20px;
+  margin-right: 5px;
+  font-weight: 700;
+}
+main .forecast-bar .forecast-card .forecast-picture {
+  height: 90px;
+  width: 100px;
+}
+main .forecast-bar .forecast-card .spin {
+  animation: rotate 10s linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+main .forecast-bar .forecast-card .forecast-temp {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+}
+
+footer {
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  background-color: #0a010e;
+  color: whitesmoke;
+}
+footer .copy {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}/*# sourceMappingURL=style.css.map */
