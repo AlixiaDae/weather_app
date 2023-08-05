@@ -1,4 +1,5 @@
 import { checkTempScale, getInputLocation, render } from "./dom";
+import './css/style.css'
 
 const tempToggle = document.getElementById("temp-toggle")
 const inputLocationElement = document.getElementById("search-location")

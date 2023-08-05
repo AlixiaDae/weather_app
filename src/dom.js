@@ -1,4 +1,9 @@
 import * as api from './api'
+import Sunny from './assets/icons/sunny.svg'
+import Cloudy from './assets/icons/cloudy.svg'
+import Lightning from './assets/icons/lightning.svg'
+import Rainy from './assets/icons/rainy.svg'
+import Snow from './assets/icons/snow.svg'
 
 let location = localStorage.getItem("location")
 const tempToggle = document.getElementById("temp-toggle")
@@ -124,11 +129,7 @@ function getCondition(request, data) {
 function getPicture(request, data) {
     const imageElement = document.querySelector(".weather-picture")
     const imageFolder = '../dist/assets/icons'
-    const sunny = `${imageFolder}/sunny.svg`
-    const cloudy = `${imageFolder}/cloudy.svg`
-    const lightning = `${imageFolder}/lightning.svg`
-    const rainy = `${imageFolder}/rainy.svg`
-    const snow = `${imageFolder}/snow.svg`
+
     const sunnyArray = [
         "clear",
         "sunny"
@@ -193,19 +194,19 @@ function getPicture(request, data) {
     if(request === "current") {
     let condition = data.current.condition.text.toLowerCase()
         if(sunnyArray.includes(condition)) {
-            imageElement.src = sunny
+            imageElement.src = Sunny
             imageElement.classList.add("spin")
         } else if(cloudyArray.includes(condition)) {
-            imageElement.src = cloudy
+            imageElement.src = Cloudy
             imageElement.classList.remove("spin")
         } else if(rainyArray.includes(condition)) {
-            imageElement.src = rainy
+            imageElement.src = Rainy
             imageElement.classList.remove("spin")
         } else if(snowArray.includes(condition)) {
-            imageElement.src = snow
+            imageElement.src = Snow
             imageElement.classList.add("spin")
         } else if(lightningArray.includes(condition)) {
-            imageElement.src = lightning
+            imageElement.src = Lightning
             imageElement.classList.remove("spin")
         }
     } else {
@@ -213,19 +214,19 @@ function getPicture(request, data) {
         for(let i = 0; i < forecastPictures.length; i++) {
             let forecastCondition = data.forecast.forecastday[i].day.condition.text.toLowerCase()
             if(sunnyArray.includes(forecastCondition)) {
-                forecastPictures[i].src = sunny
+                forecastPictures[i].src = Sunny
                 forecastPictures[i].classList.add("spin")
             } else if(cloudyArray.includes(forecastCondition)) {
-                forecastPictures[i].src = cloudy
+                forecastPictures[i].src = Cloudy
                 forecastPictures[i].classList.remove("spin")
             } else if(rainyArray.includes(forecastCondition)) {
-                forecastPictures[i].src = rainy
+                forecastPictures[i].src = Rainy
                 forecastPictures[i].classList.remove("spin")
             } else if(snowArray.includes(forecastCondition)) {
-                imageElement.src = snow
+                imageElement.src = Snow
                 imageElement.classList.add("spin")
             } else if(lightningArray.includes(forecastCondition)) {
-                forecastPictures[i].src = lightning
+                forecastPictures[i].src = Lightning
                 forecastPictures[i].classList.remove("spin")
             }
         }
