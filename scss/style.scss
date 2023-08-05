@@ -36,22 +36,22 @@ body {
 
 header {
     width: 100%;
-    padding: 1.5rem;
+    // padding: 1.5rem;
+    padding-top: 1.5rem;
     color: whitesmoke;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    @include flexCenter(row, center, space-between);
 
     h1 {
         font-family: $headerFont;
         font-weight: map-get($font-weights, bold);
-        font-size: 2.5rem;
-        text-decoration: underline;
+        font-size: 3rem;
+        margin-left: 200px;
+        // text-decoration: underline;
     }
 
     span {
-        gap: 100px;
-        margin-left: -70px;
+        gap: 50px;
+        margin-right: 200px;
         @include flexCenter(row, center, center)
     }
 
@@ -63,8 +63,6 @@ header {
         border: none;
         border-bottom: 1px solid white;
         font-weight: map-get($font-weights, bold);
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
 
         &:focus {
             background-color: hsla(0, 0, 0, 0.3);
@@ -83,6 +81,7 @@ header {
             left: 43px;
             transform: translateX(-5%);
             transition: all .3s ease;
+            background-image: linear-gradient($currentcardcolor, $forecastcardcolor);
         }
     }
 
@@ -105,7 +104,7 @@ header {
             top: 4px;
             left: 3px;
             border-radius: 180px;
-            background-image: linear-gradient(180deg, lighten($purple, 20%), $mediumpurple);
+            background-image: linear-gradient($forecastcardcolor, $currentcardcolor);
             transition: all .3s ease;
         }
     }
@@ -128,7 +127,7 @@ main {
         gap: 20px;
         font-size: 1.5rem;
         text-align: center;
-        background-color: $currentcardcolor;
+        // background-color: $currentcardcolor;
         @include flexCenter(column, center, space-around);
 
         .temperature {
@@ -157,13 +156,13 @@ main {
     }
 
     .forecast-bar {
-        background-color: $forecastcardcolor;
-        height: 100%;
+        // background-color: $forecastcardcolor;
         width: 30%;
         border-radius: 20px;
         @include flexCenter(column, center, center);
 
         .forecast-card {
+            padding: 15px;
             gap: 10px;
             text-align: center;
             @include flexCenter(column, center, center);

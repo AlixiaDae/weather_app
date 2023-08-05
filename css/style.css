@@ -42,21 +42,22 @@ body {
 
 header {
   width: 100%;
-  padding: 1.5rem;
+  padding-top: 1.5rem;
   color: whitesmoke;
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 }
 header h1 {
   font-family: "Roboto Mono", sans-serif;
   font-weight: 700;
-  font-size: 2.5rem;
-  text-decoration: underline;
+  font-size: 3rem;
+  margin-left: 200px;
 }
 header span {
-  gap: 100px;
-  margin-left: -70px;
+  gap: 50px;
+  margin-right: 200px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -70,8 +71,6 @@ header .searchbox input {
   border: none;
   border-bottom: 1px solid white;
   font-weight: 700;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
 }
 header .searchbox input:focus {
   background-color: hsla(0, 0%, 0%, 0.3);
@@ -88,6 +87,7 @@ header .toggle-box input:checked + label:after {
   left: 43px;
   transform: translateX(-5%);
   transition: all 0.3s ease;
+  background-image: linear-gradient(hsla(280, 86%, 3%, 0.3), hsla(0, 0%, 0%, 0.541));
 }
 header label {
   width: 80px;
@@ -108,7 +108,7 @@ header label:after {
   top: 4px;
   left: 3px;
   border-radius: 180px;
-  background-image: linear-gradient(180deg, #b88ecb, #702fa7);
+  background-image: linear-gradient(hsla(0, 0%, 0%, 0.541), hsla(280, 86%, 3%, 0.3));
   transition: all 0.3s ease;
 }
 
@@ -129,7 +129,6 @@ main .component-card {
   gap: 20px;
   font-size: 1.5rem;
   text-align: center;
-  background-color: hsla(280, 86%, 3%, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,8 +160,6 @@ main .component-card p {
   color: whitesmoke;
 }
 main .forecast-bar {
-  background-color: rgba(0, 0, 0, 0.541);
-  height: 100%;
   width: 30%;
   border-radius: 20px;
   display: flex;
@@ -171,6 +168,7 @@ main .forecast-bar {
   justify-content: center;
 }
 main .forecast-bar .forecast-card {
+  padding: 15px;
   gap: 10px;
   text-align: center;
   display: flex;
