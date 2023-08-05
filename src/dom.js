@@ -1,3 +1,46 @@
+import * as api from './api'
+
+let location = localStorage.getItem("location")
+const tempToggle = document.getElementById("temp-toggle")
+let tempScale = "celsius"
+const inputLocationElement = document.getElementById("search-location")
+
+
+function checkTempScale() {
+    if(!tempToggle.checked) {
+        location = localStorage.getItem("location")
+        let url = buildURL("current")
+        let forecastUrl = buildURL("forecast")
+        api.getForecastData(forecastUrl, "celsius")
+        api.getWeatherData(url, "celsius")
+    } else if(tempToggle.checked) {
+        location = localStorage.getItem("location")
+        let url = buildURL("current")
+        let forecastUrl = buildURL("forecast")
+        api.getForecastData(forecastUrl, "fahrenheit")
+        api.getWeatherData(url, "fahrenheit")
+    }
+}
+
+//TODO get day after tomorrow and append to forecast-card[1] and [2]
+
+function getInputLocation() {
+    location = inputLocationElement.value
+    localStorage.setItem("location", location)
+
+    return location
+}
+
+function buildURL(request) {
+    if(request === "current") {
+        let url = `http://api.weatherapi.com/v1/current.json?key=3e703f9b6f2b40a1ad4122531230308&q=${location.toLowerCase()}`
+        return url
+    } else {
+        let url = `http://api.weatherapi.com/v1/forecast.json?key=3e703f9b6f2b40a1ad4122531230308&q=${location.toLowerCase()}&days=3`
+        return url
+    }
+}
+
 function displayTemperature(request, data, scale) {
     const temperatureElement = document.querySelector(".temperature")
     let unit = "°C"
@@ -50,7 +93,6 @@ function getCondition(request, data) {
         messageElement.textContent = `${data.current.condition.text}`
     } else {
         const forecastMessageElement = document.querySelectorAll(".forecast-message") 
-        console.log(forecastMessageElement)
         for(let i = 0; i < forecastMessageElement.length; i++) {
             let condition = data.forecast.forecastday[i].day.condition.text
             forecastMessageElement[i].textContent = condition
@@ -172,12 +214,31 @@ function getPicture(request, data) {
     
 }
 
+function render() {
+    if(!localStorage.getItem("location")) {
+        location = "Milan"
+        let url = buildURL("current")
+        let forecastUrl = buildURL("forecast")
+        api.getForecastData(forecastUrl, tempScale)
+        api.getWeatherData(url, tempScale)
+    } else {
+        location = localStorage.getItem("location")
+        let url = buildURL("current")
+        let forecastUrl = buildURL("forecast")
+        api.getForecastData(forecastUrl, tempScale)
+        api.getWeatherData(url, tempScale)
+    }
+    
 
+}
 
 export {
     displayTemperature,
     displayLocation,
     getCondition,
-    getPicture
+    getPicture,
+    render,
+    checkTempScale,
+    getInputLocation
 }
     

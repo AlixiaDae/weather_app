@@ -27,8 +27,6 @@ img { /* safari 6.0 - 9.0 */
 }
 
 body {
-  display: flex;
-  flex-direction: column;
   height: 100vh;
   width: 100%;
   font-family: "Roboto Mono", sans-serif;
@@ -36,6 +34,10 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: none;
+  justify-content: center;
 }
 
 header {
@@ -50,14 +52,38 @@ header h1 {
   font-family: "Roboto Mono", sans-serif;
   font-weight: 700;
   font-size: 2.5rem;
+  text-decoration: underline;
 }
-header input {
+header span {
+  gap: 100px;
+  margin-left: -70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+header .searchbox input {
+  padding: 10px;
+  background-color: transparent;
+  color: whitesmoke;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid white;
+  font-weight: 700;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+header .searchbox input:focus {
+  background-color: hsla(0, 0%, 0%, 0.3);
+  color: whitesmoke;
+}
+header .toggle-box input {
   display: none;
   width: 0;
   height: 0;
   visibility: hidden;
 }
-header input:checked + label:after {
+header .toggle-box input:checked + label:after {
   content: "°F";
   left: 43px;
   transform: translateX(-5%);
@@ -90,23 +116,24 @@ main {
   flex-grow: 1;
   padding: 2rem;
   color: whitesmoke;
-  display: flex;
-  flex-direction: column;
   gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 main .component-card {
-  height: 65%;
-  width: 350px;
+  height: 500px;
+  width: 400px;
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
   gap: 20px;
   font-size: 1.5rem;
   text-align: center;
-  margin: 0 auto;
   background-color: hsla(280, 86%, 3%, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 main .component-card .temperature {
   font-size: 1.5rem;
@@ -134,21 +161,22 @@ main .component-card p {
   color: whitesmoke;
 }
 main .forecast-bar {
-  display: flex;
-  height: 35%;
-  justify-content: space-around;
-}
-main .forecast-bar .forecast-card {
+  background-color: rgba(0, 0, 0, 0.541);
+  height: 100%;
+  width: 30%;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  border-radius: 15px;
+  justify-content: center;
+}
+main .forecast-bar .forecast-card {
   gap: 10px;
-  height: 260px;
-  width: 250px;
-  background-color: hsla(280, 86%, 3%, 0.3);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 main .forecast-bar .forecast-card .forecast-picture {
   height: 100px;

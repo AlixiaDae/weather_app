@@ -15,9 +15,14 @@
     }
 }
 
-body {
+@mixin flexCenter($direction, $align-name, $justify-name) {
     display: flex;
-    flex-direction: column;
+    flex-direction: $direction;
+    align-items: $align-name;
+    justify-content: $justify-name;
+}
+
+body {
     height: 100vh;
     width: 100%;
     font-family: $headerFont;
@@ -25,6 +30,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    @include flexCenter(column, none, center)
 }
 
 header {
@@ -39,9 +46,33 @@ header {
         font-family: $headerFont;
         font-weight: map-get($font-weights, bold);
         font-size: 2.5rem;
+        text-decoration: underline;
     }
 
-    input {
+    span {
+        gap: 100px;
+        margin-left: -70px;
+        @include flexCenter(row, center, center)
+    }
+
+    .searchbox input {
+        padding: 10px;
+        background-color:transparent;
+        color: whitesmoke;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid white;
+        font-weight: map-get($font-weights, bold);
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+
+        &:focus {
+            background-color: hsla(0, 0, 0, 0.3);
+            color: whitesmoke;
+        }
+    }
+
+    .toggle-box input {
         display: none;
         width: 0;
         height: 0;
@@ -86,25 +117,19 @@ main {
     flex-grow: 1;
     padding: 2rem;
     color: whitesmoke;
-    display: flex;
-    flex-direction: column;
     gap: 10px;
+    @include flexCenter(row, center, space-around);
     
 
     .component-card {
-        // background-image: linear-gradient(180deg, $purple, $mediumpurple);
-        height: 65%;
-        width: 350px;
+        height: 500px;
+        width: 400px;
         border-radius: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem;
         gap: 20px;
         font-size: 1.5rem;
         text-align: center;
-        margin: 0 auto;
-        background-color: $circlegray;
+        background-color: $currentcardcolor;
+        @include flexCenter(column, center, space-around);
 
         .temperature {
             font-size: 1.5rem;
@@ -132,21 +157,16 @@ main {
     }
 
     .forecast-bar {
-        display: flex;
-        height: 35%;
-        justify-content: space-around;
+        background-color: $forecastcardcolor;
+        height: 100%;
+        width: 30%;
+        border-radius: 20px;
+        @include flexCenter(column, center, center);
 
         .forecast-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 15px;
             gap: 10px;
-            height: 260px;
-            width: 250px;
-            background-color: $circlegray;
             text-align: center;
+            @include flexCenter(column, center, center);
 
             .forecast-picture {
                 height: 100px;
