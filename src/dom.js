@@ -24,6 +24,26 @@ function checkTempScale() {
 
 //TODO get day after tomorrow and append to forecast-card[1] and [2]
 
+function getDates() {
+    const dateObject = new Date()
+    const dayAfterTomorrow = {
+        date: dateObject.getDate() + 1,
+        month: dateObject.getMonth() + 1,
+        year: dateObject.getFullYear(),
+    }
+    const twodaysAfterTomorrow = {
+        date: dateObject.getDate() + 2,
+        month: dateObject.getMonth() + 1,
+        year: dateObject.getFullYear(),
+    }
+    const forecastDate = document.querySelectorAll(".date")
+    forecastDate[1].textContent = `${dayAfterTomorrow.date}/${dayAfterTomorrow.month}/${dayAfterTomorrow.year}`
+    forecastDate[2].textContent = `${twodaysAfterTomorrow.date}/${twodaysAfterTomorrow.month}/${twodaysAfterTomorrow.year}`
+    
+}
+
+getDates()
+
 function getInputLocation() {
     location = inputLocationElement.value
     localStorage.setItem("location", location)

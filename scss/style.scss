@@ -162,13 +162,18 @@ main {
         @include flexCenter(column, center, center);
 
         .forecast-card {
-            padding: 15px;
             gap: 10px;
             text-align: center;
             @include flexCenter(column, center, center);
 
+            .date {
+                font-size: 20px;
+                margin-right: 5px;
+                font-weight: map-get($font-weights, bold);
+            }
+
             .forecast-picture {
-                height: 100px;
+                height: 90px;
                 width: 100px;
             }
 
