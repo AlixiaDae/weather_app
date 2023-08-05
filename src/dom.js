@@ -123,7 +123,7 @@ function getCondition(request, data) {
 
 function getPicture(request, data) {
     const imageElement = document.querySelector(".weather-picture")
-    const imageFolder = '../assets/icons/'
+    const imageFolder = '../dist/assets/icons'
     const sunny = `${imageFolder}/sunny.svg`
     const cloudy = `${imageFolder}/cloudy.svg`
     const lightning = `${imageFolder}/lightning.svg`
