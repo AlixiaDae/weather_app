@@ -13,10 +13,15 @@
 <body>
     <header>
         <h1>The weather</h1>
-        <div class="toggle-box">
-            <input type="checkbox" id="temp-toggle">
-            <label class="temp-toggle" for="temp-toggle"></label>
-        </div>
+        <span>
+            <div class="searchbox">
+                <input type="text" name="search-location" id="search-location">
+            </div>
+            <div class="toggle-box">
+                <input type="checkbox" id="temp-toggle">
+                <label class="temp-toggle" for="temp-toggle"></label>
+            </div>
+        </span>
     </header>
     <main>
         <section class="component-card">
@@ -27,7 +32,7 @@
             <div class="temperature"></div>
             <p class="message"></p>
         </section>
-        <section class="forecast-bar">
+        <section class="forecast-bar">Tomorrow
             <div class="forecast-card">
                 <img class="forecast-picture">
                 <div class="forecast-temp">
